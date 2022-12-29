@@ -3,9 +3,10 @@ export const theme = {
     black: '#000',
     white: '#fff',
     body: '#F8FDF8 ',
-    primary: ' #70727A  ', //
+    primary: ' #444C91  ', //
     secondary: '#D4D7DD  ', //
-    accent: '#C5DFDF', //
+    accent: ' #01626B ', //
+    activ: '#C01352 ',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fonts: {
