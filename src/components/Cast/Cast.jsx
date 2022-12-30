@@ -10,10 +10,8 @@ export function Cast() {
   useEffect(() => {
     ApiFetchCast(movieId).then(data => {
       setCast(data.cast);
-      console.log(data.cast);
     });
   }, [movieId]);
-  console.log();
   if (!cast) {
     return null;
   }
@@ -21,7 +19,7 @@ export function Cast() {
   return (
     <>
       {cast.map(actor => (
-        <ul>
+        <ul key={actor.id}>
           <Item>
             <Img
               src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}

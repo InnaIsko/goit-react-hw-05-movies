@@ -10,17 +10,16 @@ export function Reviews() {
   useEffect(() => {
     ApiFetchReviews(movieId).then(data => {
       setReviews(data.results);
-      console.log(data.results);
     });
   }, [movieId]);
-  console.log();
+
   if (!reviews) {
     return null;
   }
   return (
     <>
       {reviews.map(review => (
-        <ul>
+        <ul key={review.id}>
           <ItemName>{review.author}</ItemName>
           <Item>{review.content}</Item>
         </ul>
@@ -28,3 +27,5 @@ export function Reviews() {
     </>
   );
 }
+// review.length < 1 ? (
+//           <p>We don't have any reviews for this movie.</p>

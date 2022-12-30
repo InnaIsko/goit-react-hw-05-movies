@@ -23,3 +23,9 @@ export function ApiFetchReviews(id) {
     `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`
   ).then(resp => resp.json());
 }
+
+export function ApiFetchQuery(query) {
+  return fetch(
+    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=1&query=${query}`
+  ).then(resp => resp.json());
+}
