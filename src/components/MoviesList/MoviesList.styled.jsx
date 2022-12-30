@@ -7,6 +7,6 @@ export const LinkStyled = styled(NavLink)`
   font-size: ${p => p.theme.fontSizes.m};
   font-weight: ${p => p.theme.fontWeights.normal};
   margin-bottom: 15px;
-  text-decoration: underline dotted;
+  text-decoration: underline dotted black;
   cursor: pointer;
 `;

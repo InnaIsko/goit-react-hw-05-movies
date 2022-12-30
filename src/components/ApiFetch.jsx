@@ -11,3 +11,15 @@ export function ApiFetchName(id) {
     `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
   ).then(resp => resp.json());
 }
+
+export function ApiFetchCast(id) {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`
+  ).then(resp => resp.json());
+}
+
+export function ApiFetchReviews(id) {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`
+  ).then(resp => resp.json());
+}

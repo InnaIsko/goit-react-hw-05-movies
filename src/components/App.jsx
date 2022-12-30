@@ -4,6 +4,7 @@ import { Home } from '../page/Home/Home';
 import { Movies } from '../page/Movies/Movies';
 import { MovieDetails } from './MovieDetails/MovieDetails';
 import { Cast } from './Cast/Cast';
+import { Reviews } from './Reviews/Reviews';
 import { Box } from 'components/Box';
 import { LinkStyled } from './App.styled';
 
@@ -19,6 +20,7 @@ export const App = () => {
         <Route path="/movies" element={<Movies />}>
           <Route path=":movieId" element={<MovieDetails />}>
             <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
         <Route path="*" element={<Home />} />
