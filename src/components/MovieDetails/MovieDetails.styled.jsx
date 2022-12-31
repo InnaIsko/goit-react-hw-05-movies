@@ -16,8 +16,8 @@ export const Span = styled.span`
 `;
 
 export const Img = styled.img`
-  width: 400px;
-  height: 300px;
+  width: 300px;
+  height: 500px;
 `;
 export const Title = styled.li`
   list-style: none;

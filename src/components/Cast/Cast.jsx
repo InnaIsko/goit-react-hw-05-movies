@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { ApiFetchCast } from '../ApiFetch';
 import { Img, Item } from './Cast.styled';
+import imgNotFound from '../../components/img/imgNotFound.jpg';
 
 export function Cast() {
   const { movieId } = useParams();
@@ -22,7 +23,11 @@ export function Cast() {
         <ul key={actor.id}>
           <Item>
             <Img
-              src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+              src={
+                actor.profile_path === null
+                  ? imgNotFound
+                  : `https://image.tmdb.org/t/p/w500${actor.profile_path}`
+              }
               alt={actor.name}
             />
           </Item>

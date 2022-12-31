@@ -18,14 +18,16 @@ export function Reviews() {
   }
   return (
     <>
-      {reviews.map(review => (
-        <ul key={review.id}>
-          <ItemName>{review.author}</ItemName>
-          <Item>{review.content}</Item>
-        </ul>
-      ))}
+      {reviews.length === 0 ? (
+        <p>We don't have any reviews for this movie.</p>
+      ) : (
+        reviews.map(review => (
+          <ul key={review.id}>
+            <ItemName>{review.author}</ItemName>
+            <Item>{review.content}</Item>
+          </ul>
+        ))
+      )}
     </>
   );
 }
-// review.length < 1 ? (
-//           <p>We don't have any reviews for this movie.</p>

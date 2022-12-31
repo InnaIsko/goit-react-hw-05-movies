@@ -1,17 +1,27 @@
 import { Outlet, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import { ApiFetchName } from 'components/ApiFetch';
 import { Item, Span, Img, Title, LinkStyled } from './MovieDetails.styled';
 import { Box } from 'components/Box';
+import { Loader } from 'components/Loader/Loader';
+import imgNotFound from '../../components/img/imgNotFound.jpg';
 
 export function MovieDetails() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  const [visibleLoader, setVisibleLoader] = useState(false);
 
   useEffect(() => {
-    ApiFetchName(movieId).then(data => {
-      setMovie(data);
-    });
+    setVisibleLoader(true);
+    ApiFetchName(movieId)
+      .then(data => {
+        setMovie(data);
+      })
+      .finally(() => {
+        setVisibleLoader(false);
+      });
   }, [movieId]);
   if (!movie) {
     return null;
@@ -22,10 +32,16 @@ export function MovieDetails() {
 
   return (
     <>
+      <Loader visible={visibleLoader} />
+      <Link to="/">Back</Link>
       <Box as="ul" display="flex" alignItems="center">
         <Item>
           <Img
-            src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+            src={
+              movie.poster_path === null
+                ? imgNotFound
+                : `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+            }
             alt={movie.original_title ?? movie.name}
           />
         </Item>
@@ -51,6 +67,7 @@ export function MovieDetails() {
           </li>
         </ul>
       </div>
+
       <Outlet />
     </>
   );

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { Form, FormBtn, Input } from './InputSearch.styled';
 
 export function InputSearch({ onInputChange }) {
   const [value, setValue] = useState('');
@@ -14,11 +15,11 @@ export function InputSearch({ onInputChange }) {
   };
 
   return (
-    <form onSubmit={handleSabmit}>
-      <button type="submit">
+    <Form onSubmit={handleSabmit}>
+      <FormBtn type="submit">
         <span>Search</span>
-      </button>
-      <input
+      </FormBtn>
+      <Input
         type="text"
         autoComplete="off"
         autoFocus
@@ -26,6 +27,6 @@ export function InputSearch({ onInputChange }) {
         onChange={handlerChange}
         value={value}
       />
-    </form>
+    </Form>
   );
 }

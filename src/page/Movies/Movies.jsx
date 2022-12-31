@@ -1,39 +1,38 @@
-import { Link, Outlet, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { Box } from 'components/Box';
 import { ApiFetchQuery } from 'components/ApiFetch';
 import { InputSearch } from 'components/InputSearch/InputSearch';
+import { LinkStyled } from './Movie.styled';
 
 export function Movies() {
-  const [search, setSearch] = useState('');
   const [movies, setMovies] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams);
+  const searchQuery = searchParams.get('query') ?? '';
 
   const handlerChange = value => {
-    setSearch(value);
-    setSearchParams({ query: value });
+    setSearchParams(value !== '' ? { query: value } : {});
   };
   useEffect(() => {
-    if (search) {
-      ApiFetchQuery(search).then(data => {
-        console.log(data.results);
+    if (searchQuery) {
+      ApiFetchQuery(searchQuery).then(data => {
         setMovies([...data.results]);
       });
     }
-  }, [search]);
+  }, [searchQuery]);
 
   return (
     <>
       <InputSearch onInputChange={handlerChange} />
       {movies && (
-        <ul>
+        <Box as="ul" display="flex" flexDirection="column">
           {movies.map(el => (
-            <Link key={el.id}>{el.name ?? el.original_title}</Link>
+            <LinkStyled to={`${el.id}`} key={el.id}>
+              {el.name ?? el.original_title}
+            </LinkStyled>
           ))}
-        </ul>
+        </Box>
       )}
-
-      <Outlet />
     </>
   );
 }
