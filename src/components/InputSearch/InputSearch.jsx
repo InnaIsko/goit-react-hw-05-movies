@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Form, FormBtn, Input } from './InputSearch.styled';
 
 export function InputSearch({ onInputChange }) {
@@ -30,3 +31,4 @@ export function InputSearch({ onInputChange }) {
     </Form>
   );
 }
+InputSearch.propTypes = { onInputChange: PropTypes.func.isRequired };

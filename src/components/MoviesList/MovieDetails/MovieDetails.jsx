@@ -1,17 +1,18 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useParams, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Suspense } from 'react';
 
 import { ApiFetchName } from 'components/ApiFetch';
 import { Item, Span, Img, Title, LinkStyled } from './MovieDetails.styled';
 import { Box } from 'components/Box';
 import { Loader } from 'components/Loader/Loader';
-import imgNotFound from '../../components/img/imgNotFound.jpg';
+import imgNotFound from '../../img/imgNotFound.jpg';
 
 export function MovieDetails() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [visibleLoader, setVisibleLoader] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     setVisibleLoader(true);
@@ -33,7 +34,7 @@ export function MovieDetails() {
   return (
     <>
       <Loader visible={visibleLoader} />
-      <Link to="/">Back</Link>
+      <Link to={location.state?.from ?? '/'}> Go Back</Link>
       <Box as="ul" display="flex" alignItems="center">
         <Item>
           <Img
@@ -67,8 +68,10 @@ export function MovieDetails() {
           </li>
         </ul>
       </div>
-
-      <Outlet />
+      <Suspense fallback={null}>
+        {' '}
+        <Outlet />
+      </Suspense>
     </>
   );
 }

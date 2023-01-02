@@ -2,7 +2,7 @@ const API_KEY = '54c00021c1f0a4ca812033181f98909b';
 
 export function ApiFetch() {
   return fetch(
-    `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`
+    `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`
   ).then(resp => {
     if (resp.ok) {
       return resp.json();

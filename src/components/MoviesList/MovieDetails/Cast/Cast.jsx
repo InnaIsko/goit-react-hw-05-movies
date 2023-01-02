@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { ApiFetchCast } from '../ApiFetch';
+import { ApiFetchCast } from '../../../ApiFetch';
 import { Img, Item } from './Cast.styled';
-import imgNotFound from '../../components/img/imgNotFound.jpg';
+import imgNotFound from '../../../img/imgNotFound.jpg';
 
-export function Cast() {
+function Cast() {
   const { movieId } = useParams();
   const [cast, setCast] = useState(null);
 
@@ -38,3 +38,4 @@ export function Cast() {
     </>
   );
 }
+export default Cast;

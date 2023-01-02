@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { ApiFetchReviews } from 'components/ApiFetch';
 import { Item, ItemName } from './Reviews.styled';
 
-export function Reviews() {
+function Reviews() {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState(null);
 
@@ -31,3 +31,4 @@ export function Reviews() {
     </>
   );
 }
+export default Reviews;
